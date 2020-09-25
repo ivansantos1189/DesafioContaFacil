@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D97E2DB8-1DF4-4808-80D6-1D3C9BFF5724}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7DF623BC-DF95-4793-8FCC-AF845D6F5F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.API", "src\services\ContaFacil.API\ContaFacil.API.csproj", "{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7DF623BC-DF95-4793-8FCC-AF845D6F5F91} = {D97E2DB8-1DF4-4808-80D6-1D3C9BFF5724}
+		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B} = {7DF623BC-DF95-4793-8FCC-AF845D6F5F91}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC632ABD-12AB-48BA-9A9E-CF7E6A7A248C}
+	EndGlobalSection
+EndGlobal
