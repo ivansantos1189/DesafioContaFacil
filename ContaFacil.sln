@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D97E2DB8-1DF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7DF623BC-DF95-4793-8FCC-AF845D6F5F91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.API", "src\services\ContaFacil.API\ContaFacil.API.csproj", "{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContaFacil.API", "src\services\ContaFacil.API\ContaFacil.API.csproj", "{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A6D44883-B7BD-4406-910C-8A399103B350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7DF623BC-DF95-4793-8FCC-AF845D6F5F91} = {D97E2DB8-1DF4-4808-80D6-1D3C9BFF5724}
 		{2CFB00F8-2E18-4D0C-A14A-3643FEEBB80B} = {7DF623BC-DF95-4793-8FCC-AF845D6F5F91}
+		{A6D44883-B7BD-4406-910C-8A399103B350} = {D97E2DB8-1DF4-4808-80D6-1D3C9BFF5724}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BC632ABD-12AB-48BA-9A9E-CF7E6A7A248C}
