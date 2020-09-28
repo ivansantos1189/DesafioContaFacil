@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://sdocs.safeweb.com.br/APIMobile/",
+  baseURL: 'https',
 });
 
 export default api;

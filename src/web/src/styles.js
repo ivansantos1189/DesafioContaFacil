@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   :root {
     --warren-for-business-over-primary: #fff;
     --warren-for-business-primary: #7bc491;
@@ -42,21 +42,23 @@ const GlobalStyle = createGlobalStyle`
     --text-placeholder: #b0b1bd;
     --text-secondary: #8b8d99;
     --text-primary: #2e2d33;
-    
+
   }
-    
-  * {
+
+  *, *::before, *::after {
     outline: none;
+    /* box-sizing: inherit; */
   }
+
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     font-family: "Source Sans Pro", Helvetica, Arial, Sans-Serif, sans-serif;
     -webkit-font-smoothing: antialiased;
     color: var(--text-primary);
+    margin: 0;
   }
 `;
-
-export default GlobalStyle;
