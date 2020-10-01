@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ContaFacil.API.Extensions;
-using ContaFacil.API.Models;
+using ContaFacil.Authentication.API.Extensions;
+using ContaFacil.Authentication.API.Models;
 using System.Linq;
 
-namespace ContaFacil.API.Controllers
+namespace ContaFacil.Authentication.API.Controllers
 {
     [Route("api/auth")]
     public class AuthController : MainController

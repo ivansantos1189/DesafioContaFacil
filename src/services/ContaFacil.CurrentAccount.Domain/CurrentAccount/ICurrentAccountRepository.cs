@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ContaFacil.Core.Data;
+using System;
 
-namespace ContaFacil.Business.Interfaces
+namespace ContaFacil.CurrentAccount.Domain
 {
-    class ICurrentAccountRepository
+    public interface ICurrentAccountRepository : IRepository<CurrentAccount>
     {
+        void Create(CurrentAccount currentAccount);
+        void Update(CurrentAccount currentAccount);
+
+        CurrentAccount GetByCustomerId(Guid customerId);
+
+        void CreateTransaction(Transaction transaction);
+
     }
 }

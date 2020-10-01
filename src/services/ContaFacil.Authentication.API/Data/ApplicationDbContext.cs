@@ -2,16 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-//using NetDevPack.Security.JwtSigningCredentials;
-//using NetDevPack.Security.JwtSigningCredentials.Store.EntityFrameworkCore;
-
-namespace ContaFacil.API.Data
+namespace ContaFacil.Authentication.API.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-        //public DbSet<SecurityKeyWithPrivate> SecurityKeys { get; set; }
-        //public DbSet<RefreshToken> RefreshTokens { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -30,5 +25,5 @@ namespace ContaFacil.API.Data
         }
     }
 
-   
+
 }

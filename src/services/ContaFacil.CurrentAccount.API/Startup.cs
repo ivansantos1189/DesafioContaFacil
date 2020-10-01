@@ -1,11 +1,13 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ContaFacil.Authentication.API.Configuration;
+using NSE.Pedidos.API.Configuration;
+using NSE.WebAPI.Core.Identidade;
 
-namespace ContaFacil.Authentication.API
+namespace NSE.Pedidos.API
 {
     public class Startup
     {
@@ -29,14 +31,19 @@ namespace ContaFacil.Authentication.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentityConfiguration(Configuration);
+            services.AddApiConfiguration(Configuration);
 
-            services.AddApiConfiguration();
+            services.AddJwtConfiguration(Configuration);
+
+            services.AddMediatR(typeof(Startup));
+
+            services.RegisterServices();
+
+            services.AddMessageBusConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             app.UseApiConfiguration(env);
         }
     }

@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\ContaFacil.Core\ContaFacil.Core.csproj" />
+  </ItemGroup>
+
 </Project>

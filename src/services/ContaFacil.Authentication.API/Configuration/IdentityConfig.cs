@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using ContaFacil.API.Data;
-using ContaFacil.API.Extensions;
+using ContaFacil.Authentication.API.Data;
+using ContaFacil.Authentication.API.Extensions;
 
-namespace ContaFacil.API.Configuration
+namespace ContaFacil.Authentication.API.Configuration
 {
     public static class IdentityConfig
     {

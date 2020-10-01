@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-
-namespace ContaFacil.Authentication.API
+namespace NSE.Pedidos.API
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

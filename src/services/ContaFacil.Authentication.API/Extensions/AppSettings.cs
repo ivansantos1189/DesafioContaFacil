@@ -1,4 +1,4 @@
-﻿namespace ContaFacil.API.Extensions
+﻿namespace ContaFacil.Authentication.API.Extensions
 {
     public class AppSettings
     {

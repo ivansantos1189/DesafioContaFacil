@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ContaFacil.API.Configuration
+namespace ContaFacil.Authentication.API.Configuration
 {
     public static class ApiConfig
     {

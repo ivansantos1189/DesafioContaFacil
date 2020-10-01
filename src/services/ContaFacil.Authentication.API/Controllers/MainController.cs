@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace ContaFacil.API.Controllers
+namespace ContaFacil.Authentication.API.Controllers
 {
     [ApiController]
     public abstract class MainController : Controller

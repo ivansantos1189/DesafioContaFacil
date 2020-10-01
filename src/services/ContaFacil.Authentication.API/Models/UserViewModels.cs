@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContaFacil.API.Models
+namespace ContaFacil.Authentication.API.Models
 {
 
     public class UserRegister
