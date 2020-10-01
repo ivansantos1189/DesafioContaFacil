@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace ContaFacil.API.Configuration
 {
@@ -10,6 +12,8 @@ namespace ContaFacil.API.Configuration
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddHealthChecks();
 
             return services;
         }
@@ -31,6 +35,8 @@ namespace ContaFacil.API.Configuration
             {
                 endpoints.MapControllers();
             });
+
+            app.UseHealthChecks("/api/hc");
 
             return app;
         }
