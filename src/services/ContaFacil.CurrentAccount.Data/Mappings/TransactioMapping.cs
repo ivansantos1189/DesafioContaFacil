@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ContaFacil.CurrentAccount.Data.Repository
+namespace ContaFacil.CurrentAccount.Data.Mappings
 {
-    class TransactionRepository
+    class TransactioMapping
     {
     }
 }

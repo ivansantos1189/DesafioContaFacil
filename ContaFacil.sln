@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContaFacil.CurrentAccount.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{372CF223-D5EA-4883-BD0F-4379628AB193}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.WebAPI.Core", "src\building blocks\ContaFacil.WebAPI.Core\ContaFacil.WebAPI.Core.csproj", "{F6984991-BA2A-4B8A-B570-EBC51968C72E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{793CDDA2-6F64-4CAA-AC74-EAB1FA656A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{793CDDA2-6F64-4CAA-AC74-EAB1FA656A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{793CDDA2-6F64-4CAA-AC74-EAB1FA656A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6984991-BA2A-4B8A-B570-EBC51968C72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6984991-BA2A-4B8A-B570-EBC51968C72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6984991-BA2A-4B8A-B570-EBC51968C72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6984991-BA2A-4B8A-B570-EBC51968C72E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{2DE25C42-360C-494C-8277-13D090D37A23} = {BBF7E3C3-D986-44E9-95EA-6F810DDE746D}
 		{793CDDA2-6F64-4CAA-AC74-EAB1FA656A1A} = {D5B11805-E976-4257-958B-004F5D77D361}
 		{372CF223-D5EA-4883-BD0F-4379628AB193} = {D13EA12A-D2B3-4A61-AD77-6BDFB51CBB59}
+		{F6984991-BA2A-4B8A-B570-EBC51968C72E} = {372CF223-D5EA-4883-BD0F-4379628AB193}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BC632ABD-12AB-48BA-9A9E-CF7E6A7A248C}
