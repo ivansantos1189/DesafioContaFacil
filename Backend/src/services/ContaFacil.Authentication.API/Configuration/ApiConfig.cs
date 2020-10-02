@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-
+using ContaFacil.Core.WebAPI.Authentication;
 
 namespace ContaFacil.Authentication.API.Configuration
 {
@@ -29,7 +29,7 @@ namespace ContaFacil.Authentication.API.Configuration
 
             app.UseRouting();
 
-            app.UseIdentityConfiguration();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

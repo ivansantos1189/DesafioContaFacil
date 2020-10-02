@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ContaFacil.Core.Data;
 using ContaFacil.CurrentAccount.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContaFacil.CurrentAccount.Data.Repository
 {
@@ -17,27 +19,27 @@ namespace ContaFacil.CurrentAccount.Data.Repository
 
         public void Create(Domain.CurrentAccount currentAccount)
         {
-            throw new NotImplementedException();
+            _context.CurrentAccounts.Add(currentAccount);
         }
 
         public void CreateTransaction(Transaction transaction)
         {
-            throw new NotImplementedException();
+            _context.Transactions.Add(transaction);
         }
 
-        public void Dispose()
+        public async Task<Domain.CurrentAccount> GetByCustomerId(Guid customerId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Domain.CurrentAccount GetByCustomerId(Guid customerId)
-        {
-            throw new NotImplementedException();
+            return await _context.CurrentAccounts.FirstOrDefaultAsync(c => c.CustomerId == customerId);
         }
 
         public void Update(Domain.CurrentAccount currentAccount)
         {
-            throw new NotImplementedException();
+            _context.CurrentAccounts.Update(currentAccount);
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ContaFacil.Core.Data;
 using System;
+using System.Threading.Tasks;
 
 namespace ContaFacil.CurrentAccount.Domain
 {
@@ -8,7 +9,7 @@ namespace ContaFacil.CurrentAccount.Domain
         void Create(CurrentAccount currentAccount);
         void Update(CurrentAccount currentAccount);
 
-        CurrentAccount GetByCustomerId(Guid customerId);
+        Task<CurrentAccount> GetByCustomerId(Guid customerId);
 
         void CreateTransaction(Transaction transaction);
 

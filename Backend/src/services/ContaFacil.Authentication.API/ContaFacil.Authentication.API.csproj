@@ -20,5 +20,9 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\ContaFacil.WebAPI.Core\ContaFacil.WebAPI.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

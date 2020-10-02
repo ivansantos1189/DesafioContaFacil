@@ -22,24 +22,31 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
             _currentAccountService = currentAccountService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CreateAccount()
+        {
+            //var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
+            return CustomResponse(await _currentAccountService.Create(_user.GetUserId()));
+        }
+
         [HttpPost("payment")]
         public async Task<IActionResult> Payment(TransactionViewModel transaction)
         {
-            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
             return CustomResponse(await _currentAccountService.Pay(currentAccount, transaction.Amount));
         }
 
         [HttpPost("deposit")]
         public async Task<IActionResult> Deposit(TransactionViewModel transaction)
         {
-            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
             return CustomResponse(await _currentAccountService.Deposit(currentAccount, transaction.Amount));
         }
 
         [HttpPost("withdrawal")]
         public async Task<IActionResult> Withdrawal(TransactionViewModel transaction)
         {
-            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
             return CustomResponse(await _currentAccountService.ToWithdraw(currentAccount, transaction.Amount));
         }
     }

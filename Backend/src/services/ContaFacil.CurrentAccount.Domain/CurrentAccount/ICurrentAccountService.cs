@@ -15,7 +15,7 @@ namespace ContaFacil.CurrentAccount.Domain
 
         Task ProcessYield(CurrentAccount currentAccount);
 
-        CurrentAccount GetByCustomerId(Guid customerId);
+        Task<CurrentAccount> GetByCustomerId(Guid customerId);
     }
 }
 

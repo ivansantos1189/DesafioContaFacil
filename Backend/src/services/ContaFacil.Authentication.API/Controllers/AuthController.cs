@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ContaFacil.Authentication.API.Extensions;
 using ContaFacil.Authentication.API.Models;
 using System.Linq;
+using ContaFacil.Core.WebAPI;
+using ContaFacil.Core.WebAPI.Authentication;
 
 namespace ContaFacil.Authentication.API.Controllers
 {
@@ -46,7 +47,8 @@ namespace ContaFacil.Authentication.API.Controllers
 
             if (result.Succeeded)
             {
-                return CustomResponse(await GerarJwt(userRegister.Email));
+
+                return CustomResponse(await GenerateJwt(userRegister.Email));
             }
 
             foreach (var error in result.Errors)
@@ -67,7 +69,7 @@ namespace ContaFacil.Authentication.API.Controllers
 
             if (result.Succeeded)
             {
-                return CustomResponse(await GerarJwt(userLogin.Email));
+                return CustomResponse(await GenerateJwt(userLogin.Email));
             }
 
             if (result.IsLockedOut)
@@ -80,18 +82,18 @@ namespace ContaFacil.Authentication.API.Controllers
             return CustomResponse();
         }
 
-        private async Task<UserLoginResponse> GerarJwt(string email)
+        private async Task<UserLoginResponse> GenerateJwt(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
 
-            var identityClaims = await ObterClaimsUsuario(claims, user);
-            var encodedToken = CodificarToken(identityClaims);
+            var identityClaims = await GetClaimsUser(claims, user);
+            var encodedToken = EncodeToken(identityClaims);
 
-            return ObterRespostaToken(encodedToken, user, claims);
+            return GetTokenResponse(encodedToken, user, claims);
         }
 
-        private async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
+        private async Task<ClaimsIdentity> GetClaimsUser(ICollection<Claim> claims, IdentityUser user)
         {
             var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -111,28 +113,28 @@ namespace ContaFacil.Authentication.API.Controllers
             return identityClaims;
         }
 
-        private string CodificarToken(ClaimsIdentity identityClaims)
+        private string EncodeToken(ClaimsIdentity identityClaims)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = _appSettings.Emissor,
-                Audience = _appSettings.ValidoEm,
+                Issuer = _appSettings.Issuer,
+                Audience = _appSettings.Audience,
                 Subject = identityClaims,
-                Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiracaoHoras),
+                Expires = DateTime.UtcNow.AddHours(_appSettings.Expires),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             });
 
             return tokenHandler.WriteToken(token);
         }
 
-        private UserLoginResponse ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
+        private UserLoginResponse GetTokenResponse(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
         {
             return new UserLoginResponse
             {
                 AccessToken = encodedToken,
-                ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalSeconds,
+                ExpiresIn = TimeSpan.FromHours(_appSettings.Expires).TotalSeconds,
                 UserToken = new UserToken
                 {
                     Id = user.Id,

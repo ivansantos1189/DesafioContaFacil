@@ -32,8 +32,8 @@ namespace ContaFacil.Core.WebAPI.Authentication
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = appSettings.ValidoEm,
-                    ValidIssuer = appSettings.Emissor
+                    ValidAudience = appSettings.Audience,
+                    ValidIssuer = appSettings.Issuer
                 };
             });
         }
