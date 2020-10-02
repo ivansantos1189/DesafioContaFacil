@@ -9,13 +9,14 @@ using ContaFacil.CurrentAccount.Domain;
 namespace ContaFacil.CurrentAccounts.API.Controllers
 {
     [Authorize]
+    [Route("api/CurrentAccount")]
     public class CurrentAccountController : MainController
     {
 
-        private readonly IAspNetUser _user;
+        private readonly AspNetUser _user;
         private readonly ICurrentAccountService _currentAccountService;
 
-        public CurrentAccountController(IAspNetUser user, ICurrentAccountService currentAccountService)
+        public CurrentAccountController(AspNetUser user, ICurrentAccountService currentAccountService)
         {
             _user = user;
             _currentAccountService = currentAccountService;
@@ -24,25 +25,22 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
         [HttpPost("payment")]
         public async Task<IActionResult> Payment(TransactionViewModel transaction)
         {
-            var currentAccount = _currentAccountService.ProcessYield(_user.GetUserId());
-            var
-            return CustomResponse(await _currentAccountService.Pay());
+            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            return CustomResponse(await _currentAccountService.Pay(currentAccount, transaction.Amount));
         }
 
         [HttpPost("deposit")]
-        public async Task<IActionResult> Deposit()
+        public async Task<IActionResult> Deposit(TransactionViewModel transaction)
         {
-            var pedido = await _pedidoQueries.ObterUltimoPedido(_user.GetUserId());
-
-            return pedido == null ? NotFound() : CustomResponse(pedido);
+            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            return CustomResponse(await _currentAccountService.Deposit(currentAccount, transaction.Amount));
         }
 
         [HttpPost("withdrawal")]
-        public async Task<IActionResult> Withdrawal()
+        public async Task<IActionResult> Withdrawal(TransactionViewModel transaction)
         {
-            var pedidos = await _pedidoQueries.ObterListaPorClienteId(_user.ObterUserId());
-
-            return pedidos == null ? NotFound() : CustomResponse(pedidos);
+            var currentAccount = _currentAccountService.GetByCustomerId(_user.GetUserId());
+            return CustomResponse(await _currentAccountService.ToWithdraw(currentAccount, transaction.Amount));
         }
     }
 }

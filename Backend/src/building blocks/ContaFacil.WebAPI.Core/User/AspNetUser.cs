@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ContaFacil.WebAPI.Core.User
 {
-    class AspNetUser : IAspNetUser
+    public class AspNetUser : IAspNetUser
     {
         private readonly IHttpContextAccessor _accessor;
 

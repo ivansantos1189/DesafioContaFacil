@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ContaFacil.CurrentAccount.Data;
+using ContaFacil.Core.WebAPI.Authentication;
 
 namespace ContaFacil.CurrentAccount.API.Configuration
 {

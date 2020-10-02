@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ContaFacil.CurrentAccount.API.Configuration
+namespace ContaFacil.Core.WebAPI.Authentication
 {
     public class CustomAuthorization
     {

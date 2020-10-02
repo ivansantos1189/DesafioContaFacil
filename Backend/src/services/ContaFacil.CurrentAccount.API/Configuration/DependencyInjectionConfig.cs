@@ -13,7 +13,7 @@ namespace ContaFacil.CurrentAccount.API.Configuration
         {
             // API
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IAspNetUser, IAspNetUser>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
 
             //Services
             services.AddScoped<ICurrentAccountService, CurrentAccountService>();

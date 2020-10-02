@@ -14,6 +14,8 @@ namespace ContaFacil.CurrentAccount.Domain
         Task<Transaction> ToWithdraw(CurrentAccount currentAccount, decimal amount);
 
         Task ProcessYield(CurrentAccount currentAccount);
+
+        CurrentAccount GetByCustomerId(Guid customerId);
     }
 }
 
