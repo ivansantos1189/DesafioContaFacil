@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace NSE.Pedidos.API
+namespace ContaFacil.CurrentAccount.API
 {
     public static class Program
     {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ContaFacil.CurrentAccount.Domain;
 using ContaFacil.CurrentAccount.Data;
 using ContaFacil.CurrentAccount.Data.Repository;
+using ContaFacil.WebAPI.Core.User;
 
 namespace ContaFacil.CurrentAccount.API.Configuration
 {
@@ -12,13 +13,14 @@ namespace ContaFacil.CurrentAccount.API.Configuration
         {
             // API
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IAspNetUser, AspNetUser>();
+            services.AddScoped<IAspNetUser, IAspNetUser>();
 
+            //Services
+            services.AddScoped<ICurrentAccountService, CurrentAccountService>();
 
             // Data
-            services.AddScoped<IPedidoRepository, PedidoRepository>();
-            services.AddScoped<IVoucherRepository, VoucherRepository>();
-            services.AddScoped<PedidosContext>();
+            services.AddScoped<ICurrentAccountRepository, CurrentAccountRepository>();
+            services.AddScoped<CurrentAccountContext>();
         }
     }
 }

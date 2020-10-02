@@ -24,6 +24,11 @@ namespace ContaFacil.CurrentAccount.Domain
             return currentAccount;
         }
 
+        public async Task<CurrentAccount> GetByCustomerId(Guid customerId)
+        {
+            return _currentAccountRepository.GetByCustomerId(customerId);
+        }
+
         public async Task<Transaction> Deposit(CurrentAccount currentAccount, decimal amount)
         {
             var transaction = new Transaction(currentAccount.Id, TransactionType.Deposit, amount);
