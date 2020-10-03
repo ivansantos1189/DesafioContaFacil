@@ -1,5 +1,8 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { IconContext } from 'react-icons';
+import { MdMail, MdLock } from 'react-icons/md';
+import { useAuth } from '../../contexts/auth';
 import {
   ContainerColumns,
   ContainerLeft,
@@ -13,9 +16,24 @@ import {
   InputAddon,
   Input,
   Button,
+  A
 } from './styles';
 
 export default function SignIn() {
+  const { signIn } = useAuth();
+  let history = useHistory();
+
+
+  const [email, setEmail] = useState('');
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordFocus, setPasswordFocus] = useState(false);
+
+  async function login() {
+    await signIn();
+    history.replace("/");
+  }
+
   return (
     <ContainerColumns>
       <ContainerLeft>
@@ -40,31 +58,28 @@ export default function SignIn() {
               <WrapperInput>
                 <InputAddon>
                   <span>
-                    <svg
-                      data-v-aefb9ec2=""
-                      version="1.1"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      height="24px"
-                    >
-                      <path
-                        fill="var(--text-placeholder)"
-                        stroke="none"
-                        pid="0"
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                        _fill="#2E2D33"
-                        fillRule="evenodd"
-                      />
-                    </svg>
+                    <IconContext.Provider value={{ color: emailFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}><MdMail /></IconContext.Provider>
                   </span>
                 </InputAddon>
-                <Input id="email" type="email" />
+                <Input id="email" type="email" onChange={e => setEmail(e.target.value)} onFocus={() => setEmailFocus(true)} onBlur={() => setEmailFocus(false)} />
+              </WrapperInput>
+              <Label>Senha </Label>
+              <WrapperInput>
+                <InputAddon>
+                  <span>
+                    <IconContext.Provider value={{ color: passwordFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}><MdLock /></IconContext.Provider>
+                  </span>
+                </InputAddon>
+                <Input id="password" type="password" onChange={e => setPassword(e.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} />
               </WrapperInput>
             </Fieldset>
-            <Button>Continuar</Button>
+            <Button disabled={!email || !password} onClick={login}>Continuar</Button>
           </Form>
+          <div style={{ textAlign: 'center', paddingTop: '10px' }}>
+            <Link to="/SignUp"><A>Ainda não sou cliente</A></Link>
+          </div>
         </Main>
-      </ContainerRigth>
-    </ContainerColumns>
+      </ContainerRigth >
+    </ContainerColumns >
   );
 }

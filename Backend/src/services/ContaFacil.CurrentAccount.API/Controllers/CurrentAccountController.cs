@@ -13,10 +13,10 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
     public class CurrentAccountController : MainController
     {
 
-        private readonly AspNetUser _user;
+        private readonly IAspNetUser _user;
         private readonly ICurrentAccountService _currentAccountService;
 
-        public CurrentAccountController(AspNetUser user, ICurrentAccountService currentAccountService)
+        public CurrentAccountController(IAspNetUser user, ICurrentAccountService currentAccountService)
         {
             _user = user;
             _currentAccountService = currentAccountService;

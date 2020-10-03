@@ -24,5 +24,7 @@
     <ProjectReference Include="..\..\building blocks\ContaFacil.WebAPI.Core\ContaFacil.WebAPI.Core.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 
 </Project>

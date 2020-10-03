@@ -68,6 +68,7 @@ export const Label = styled.label`
 
 export const WrapperInput = styled.div`
   margin-top: 4px;
+  margin-bottom: 8px;
   display: table;
   position: relative;
   border-collapse: separate;
@@ -116,7 +117,7 @@ export const Button = styled.button`
   outline: none;
   max-height: 72px;
   color: var(--text-negative);
-  background-color: var(--status-positive);
+  background-color: ${(props) => (props.disabled ? 'var(--text-disabled)' : 'var(--status-positive)')};
   user-select: none;
   padding: 24px 32px;
   min-width: 131px;
@@ -127,9 +128,22 @@ export const Button = styled.button`
   letter-spacing: 0;
   line-height: 24px;
   text-transform: uppercase;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
   border: none;
   border-radius: 100px;
   transition: 0.2s cubic-bezier(0.55, 0, 0.1, 1);
   width: 100%;
+  :hover {
+    transform: ${(props) => (props.disabled ? '' : 'scale(1.05)')};
+  }
 `;
+
+export const A = styled.a`
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing: 0px;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+`

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ContaFacil.Business.Test
 {
-    public class CurrentAccount
+    public class CurrentAccountTests
     {
         [Fact]
         public void Test1()
