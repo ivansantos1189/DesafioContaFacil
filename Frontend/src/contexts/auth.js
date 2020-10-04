@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   async function SignUp() {
 
-    setSigned(true); s
+    setSigned(true);
   }
 
   async function signOut() {

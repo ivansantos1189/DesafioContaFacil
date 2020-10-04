@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { MdMail, MdLock } from 'react-icons/md';
+import { MdMail, MdLock, MdRemoveRedEye } from 'react-icons/md';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAuth } from '../../contexts/auth';
 import {
   ContainerColumns,
@@ -28,6 +29,7 @@ export default function SignIn() {
   const [emailFocus, setEmailFocus] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordFocus, setPasswordFocus] = useState(false);
+  const [revealPassword, setRevealPasword] = useState(false);
 
   async function login() {
     await signIn();
@@ -70,7 +72,14 @@ export default function SignIn() {
                     <IconContext.Provider value={{ color: passwordFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}><MdLock /></IconContext.Provider>
                   </span>
                 </InputAddon>
-                <Input id="password" type="password" onChange={e => setPassword(e.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} />
+                <Input id="password" type={revealPassword ? "text" : "password"} onChange={e => setPassword(e.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} />
+                <InputAddon>
+                  <span onClick={() => setRevealPasword(!revealPassword)} >
+                    <IconContext.Provider value={{ color: passwordFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}>
+                      {revealPassword ? <FaEyeSlash /> : <FaEye />}
+                    </IconContext.Provider>
+                  </span>
+                </InputAddon>
               </WrapperInput>
             </Fieldset>
             <Button disabled={!email || !password} onClick={login}>Continuar</Button>

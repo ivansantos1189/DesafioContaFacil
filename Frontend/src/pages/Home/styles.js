@@ -8,7 +8,6 @@ export const ViewContainer = styled.div`
   top: 64px;
   --primary: var(--cash-primary);
   --over-primary: var(--cash-over-primary);
-}
 `
 export const MainContainer = styled.div`
   height: calc(100vh - 64px);
