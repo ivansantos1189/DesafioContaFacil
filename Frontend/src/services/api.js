@@ -5,5 +5,5 @@ export const apiAuth = axios.create({
 });
 
 export const apiApp = axios.create({
-  baseURL: 'https',
+  baseURL: 'https://localhost:44352/api/',
 });

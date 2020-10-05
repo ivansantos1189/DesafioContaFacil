@@ -13,6 +13,16 @@ namespace ContaFacil.Authentication.API.Configuration
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+            });
+
             services.AddHealthChecks();
 
             return services;
@@ -26,6 +36,8 @@ namespace ContaFacil.Authentication.API.Configuration
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("Total");
 
             app.UseRouting();
 

@@ -8,6 +8,8 @@ Arquitetura de micro serviços utilizando DDD, no backend foi utilizado .Net Cor
 
 **Execução**
 
+- Banco de dados: rodar o script da pasta sql
+
 - Backend deve ser executado as APIs ContaFacil.Authentication.API e a ContaFacil.CurrentAccount.API.
 
 - Frontend rodar os seguintes comandos:

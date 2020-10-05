@@ -30,10 +30,17 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [passwordFocus, setPasswordFocus] = useState(false);
   const [revealPassword, setRevealPasword] = useState(false);
+  const [error, setError] = useState('');
 
-  async function login() {
-    await signIn();
-    history.replace("/");
+  async function login(event) {
+    event.preventDefault();
+    const result = await signIn(email, password);
+
+    if (result.errors)
+      setError(result.errors[0]);
+
+    if (result.status === "OK")
+      history.push("/");
   }
 
   return (
@@ -81,6 +88,7 @@ export default function SignIn() {
                   </span>
                 </InputAddon>
               </WrapperInput>
+              <span style={{ color: '#FF9001', fontSize: '13px' }}>{error}</span>
             </Fieldset>
             <Button disabled={!email || !password} onClick={login}>Continuar</Button>
           </Form>

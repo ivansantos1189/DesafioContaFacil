@@ -14,13 +14,10 @@ namespace ContaFacil.Core.WebAPI
         {
             if (Validate())
             {
-                return Ok(result);
+                return Ok(new { result, status = "OK" });
             }
 
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
-            {
-                { "Messages", Errors.ToArray() }
-            }));
+            return Ok(new { result = false, errors = Errors.ToArray(), stauts = "Error" });
         }
 
         protected ActionResult CustomResponse(ModelStateDictionary modelState)

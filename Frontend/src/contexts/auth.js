@@ -26,13 +26,14 @@ export const AuthProvider = ({ children }) => {
     loadStorageData();
   }, []);
 
-  async function signIn() {
-    //const response = await auth.signIn(code);
+  async function signIn(email, password) {
+    const response = await auth.signIn(email, password);
     // await AsyncStorage.setItem("@RNAuth:user", JSON.stringify(response.User));
     // await AsyncStorage.setItem("@RNAuth:token", response.Token);
     //setUser(response.User);
     //setToken(response.Token);
     setSigned(true);
+    return response.data;
   }
 
   async function SignUp() {
