@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { MdMail, MdLock, MdRemoveRedEye } from 'react-icons/md';
+import { MdMail, MdLock } from 'react-icons/md';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAuth } from '../../contexts/auth';
 import {
@@ -24,7 +24,6 @@ export default function SignIn() {
   const { signIn } = useAuth();
   let history = useHistory();
 
-
   const [email, setEmail] = useState('');
   const [emailFocus, setEmailFocus] = useState(false);
   const [password, setPassword] = useState('');
@@ -34,13 +33,14 @@ export default function SignIn() {
 
   async function login(event) {
     event.preventDefault();
-    const result = await signIn(email, password);
+    const { result, status, errors } = await signIn(email, password);
 
-    if (result.errors)
-      setError(result.errors[0]);
+    if (errors) return setError(errors[0]);
 
-    if (result.status === "OK")
+    if (status === "OK") {
+      sessionStorage.setItem('userToken', JSON.stringify(result));
       history.push("/");
+    }
   }
 
   return (

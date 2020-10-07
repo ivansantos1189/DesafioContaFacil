@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { MdMail, MdLock } from 'react-icons/md';
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useAuth } from '../../contexts/auth';
+import { createAccount } from '../../services/currentAccount';
 import {
   ContainerColumns,
   ContainerLeft,
@@ -19,10 +22,29 @@ import {
 } from './styles';
 
 export default function SignUp() {
+  const { signUp } = useAuth();
+  let history = useHistory();
+
   const [email, setEmail] = useState('');
   const [emailFocus, setEmailFocus] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordFocus, setPasswordFocus] = useState(false);
+  const [revealPassword, setRevealPasword] = useState(false);
+  const [error, setError] = useState('');
+
+  async function SignUpRegister(event) {
+    event.preventDefault();
+    const { result, status, errors } = await signUp(email, password);
+
+    if (errors) return setError(errors[0]);
+
+    if (status === "OK") {
+      await createAccount();
+
+      sessionStorage.setItem('userToken', JSON.stringify(result));
+      history.push("/");
+    }
+  }
 
   return (
     <ContainerColumns>
@@ -61,10 +83,18 @@ export default function SignUp() {
                     <IconContext.Provider value={{ color: passwordFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}><MdLock /></IconContext.Provider>
                   </span>
                 </InputAddon>
-                <Input id="password" type="password" onChange={e => setPassword(e.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} />
+                <Input id="password" type={revealPassword ? "text" : "password"} onChange={e => setPassword(e.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} />
+                <InputAddon>
+                  <span onClick={() => setRevealPasword(!revealPassword)} >
+                    <IconContext.Provider value={{ color: passwordFocus ? '#2e2d33' : '#b0b1bd', size: '24px' }}>
+                      {revealPassword ? <FaEyeSlash /> : <FaEye />}
+                    </IconContext.Provider>
+                  </span>
+                </InputAddon>
               </WrapperInput>
+              <span style={{ color: '#FF9001', fontSize: '13px' }}>{error}</span>
             </Fieldset>
-            <Button disabled={!email || !password}>Criar Conta</Button>
+            <Button disabled={!email || !password} onClick={SignUpRegister}>Criar Conta</Button>
           </Form>
         </Main>
       </ContainerRigth>

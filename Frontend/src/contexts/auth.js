@@ -28,22 +28,26 @@ export const AuthProvider = ({ children }) => {
 
   async function signIn(email, password) {
     const response = await auth.signIn(email, password);
-    // await AsyncStorage.setItem("@RNAuth:user", JSON.stringify(response.User));
-    // await AsyncStorage.setItem("@RNAuth:token", response.Token);
-    //setUser(response.User);
-    //setToken(response.Token);
-    setSigned(true);
-    return response.data;
+
+    if (response.status === 'OK')
+      setSigned(true);
+
+    return response;
   }
 
-  async function SignUp() {
+  async function signUp(email, password) {
+    const response = await auth.signUp(email, password);
 
-    setSigned(true);
+    if (response.status === 'OK')
+      setSigned(true);
+
+    return response
   }
 
   async function signOut() {
+    sessionStorage.removeItem('userToken');
     setSigned(false);
-    setUser(null);
+    //setUser(null);
     // await AsyncStorage.multiRemove(["@RNAuth:user", "@RNAuth:token"]);
   }
 
@@ -54,6 +58,7 @@ export const AuthProvider = ({ children }) => {
         user,
         signIn,
         signOut,
+        signUp,
         token,
       }}
     >
