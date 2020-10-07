@@ -6,6 +6,22 @@ import { getListTransactions } from '../../services/currentAccount';
 export default function Home() {
   const [transactions, setTransactions] = useState([]);
 
+  useEffect(() => {
+    async function loadData() {
+
+      const { result, status, errors } = await getListTransactions();
+
+      if (errors) return setError(errors[0]);
+
+      if (status === "OK") {
+        setTransactions(result);
+      }
+
+    }
+
+    loadData();
+  }, []);
+
   return (
     <>
       <Header></Header>
@@ -18,6 +34,7 @@ export default function Home() {
           </Card>
         </MainContainer>
       </ViewContainer>
+      {JSON.stringify(transactions)}
     </>
   );
 }

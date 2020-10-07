@@ -18,7 +18,7 @@ namespace ContaFacil.CurrentAccount.Domain
 
         Task<CurrentAccount> GetByCustomerId(Guid customerId);
 
-        Task<List<Transaction>> GetListTransaction(CurrentAccount currentAccount)
+        Task<List<Transaction>> GetListTransaction(CurrentAccount currentAccount);
 
     }
 }
