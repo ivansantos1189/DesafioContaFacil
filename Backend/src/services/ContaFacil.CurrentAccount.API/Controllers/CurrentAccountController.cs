@@ -25,7 +25,6 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateAccount()
         {
-            //var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
             return CustomResponse(await _currentAccountService.Create(_user.GetUserId()));
         }
 
@@ -48,6 +47,13 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
         {
             var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
             return CustomResponse(await _currentAccountService.ToWithdraw(currentAccount, transaction.Amount));
+        }
+
+        [HttpGet("transaction_list")]
+        public async Task<IActionResult> GetListTransactions()
+        {
+            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
+            return CustomResponse(await _currentAccountService.GetListTransaction(currentAccount));
         }
     }
 }

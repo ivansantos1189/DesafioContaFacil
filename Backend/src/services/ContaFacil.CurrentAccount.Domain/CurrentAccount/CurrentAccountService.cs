@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContaFacil.CurrentAccount.Domain
@@ -87,6 +88,11 @@ namespace ContaFacil.CurrentAccount.Domain
             await _currentAccountRepository.UnitOfWork.Commit();
 
             return transaction;
+        }
+
+        public async Task<List<Transaction>> GetListTransaction(CurrentAccount currentAccount)
+        {
+            return await _currentAccountRepository.GetListTransactions(currentAccount.Id);
         }
     }
 }

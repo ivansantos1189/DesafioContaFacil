@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContaFacil.CurrentAccount.Domain
@@ -16,6 +17,9 @@ namespace ContaFacil.CurrentAccount.Domain
         Task ProcessYield(CurrentAccount currentAccount);
 
         Task<CurrentAccount> GetByCustomerId(Guid customerId);
+
+        Task<List<Transaction>> GetListTransaction(CurrentAccount currentAccount)
+
     }
 }
 

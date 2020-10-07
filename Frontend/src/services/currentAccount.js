@@ -40,3 +40,13 @@ export async function withdrawal(amount) {
   }
 }
 
+export async function getListTransactions() {
+  try {
+    const result = await apiApp.get('transaction_list');
+    return result.data;
+  }
+  catch {
+    return { status: 'Error', errors: ['Ocorreu um erro inesperado, tente novamente em alguns minutos ou contato o nosso suporte'], result: false }
+  }
+}
+
