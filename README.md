@@ -20,3 +20,10 @@ Arquitetura de micro serviços utilizando DDD, no backend foi utilizado .Net Cor
     Caso de usar o yarn
     - yarn
     - yarn start
+
+usuário cadastrado:
+
+ivan.cunha@contafacil.com
+ContaFacil@123
+
+A aplicação permiti o cadastro e de novas contas.

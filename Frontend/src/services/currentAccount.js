@@ -42,7 +42,7 @@ export async function deposit(amount) {
 
 export async function withdrawal(amount) {
   try {
-    const result = await apiApp.post('withdrawal', { Amount: amount });
+    const result = await apiApp.post('currentaccount/withdrawal', { Amount: parseFloat(amount) });
     return result.data;
   }
   catch {

@@ -111,7 +111,7 @@ export default function Home() {
             </div>
             <CardButton>
               <Button onClick={accountDeposit}>Depósito</Button>
-              <Button onClick={accountPayment}>Retirada</Button>
+              <Button onClick={accountWithdrawal}>Retirada</Button>
               <Button onClick={accountPayment}>Pagamento</Button>
             </CardButton>
           </Card>
@@ -144,7 +144,6 @@ export default function Home() {
           </CashContent>
         </ContentRigth>
       </ViewContainer >
-      { JSON.stringify(transactions)}
     </>
   );
 }
