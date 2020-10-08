@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { parseISO, format } from 'date-fns';
 
 import Header from '../../components/Header';
 import {
@@ -125,6 +126,17 @@ export default function Home() {
             </CashContentSection>
             <CashContentSection>
               <H3>Últimas Movimentações</H3>
+              <SummaryContainer>
+                {
+                  transactions.map(item => (
+                    <div>
+                      <span>{`${getTypeTransaction(item.transactionType)} -
+                              ${item.amount.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} -
+                              ${format(parseISO(item.transactionDate), 'dd/MM/yyyy HH:mm:ss',)}`}
+                      </span>
+                    </div>))
+                }
+              </SummaryContainer>
             </CashContentSection>
             <CashContentSection>
               <H3>Deposite na sua conta</H3>
@@ -135,4 +147,10 @@ export default function Home() {
       { JSON.stringify(transactions)}
     </>
   );
+}
+
+function getTypeTransaction(type) {
+  const types = ['Rendimento', 'Deposito', 'Retirada', 'Pagaento'];
+
+  return types[type];
 }

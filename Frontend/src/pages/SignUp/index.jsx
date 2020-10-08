@@ -39,9 +39,8 @@ export default function SignUp() {
     if (errors) return setError(errors[0]);
 
     if (status === "OK") {
-      await createAccount();
-
       sessionStorage.setItem('userToken', JSON.stringify(result));
+      await createAccount();
       history.push("/");
     }
   }

@@ -10,7 +10,7 @@ namespace ContaFacil.CurrentAccount.Domain
             CurrentAccountId = currentAccountId;
             TransactionType = transactionType;
             Amount = amount;
-            TransactionDate = new DateTime();
+            TransactionDate = DateTime.Now;
         }
 
         protected Transaction() { }
