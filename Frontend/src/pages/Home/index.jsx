@@ -150,7 +150,7 @@ export default function Home() {
 }
 
 function getTypeTransaction(type) {
-  const types = ['Rendimento', 'Deposito', 'Retirada', 'Pagaento'];
+  const types = ['Rendimento', 'Depósito', 'Retirada', 'Pagamento'];
 
   return types[type];
 }
