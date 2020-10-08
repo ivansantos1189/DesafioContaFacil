@@ -5,6 +5,7 @@ using ContaFacil.Core.WebAPI;
 using ContaFacil.WebAPI.Core.User;
 using ContaFacil.CurrentAccount.API.Models;
 using ContaFacil.CurrentAccount.Domain;
+using ContaFacil.Core.DomainObjects;
 
 namespace ContaFacil.CurrentAccounts.API.Controllers
 {
@@ -22,17 +23,31 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
             _currentAccountService = currentAccountService;
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> CreateAccount()
         {
             return CustomResponse(await _currentAccountService.Create(_user.GetUserId()));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCurrentAccount()
+        {
+            return CustomResponse(await _currentAccountService.GetByCustomerId(_user.GetUserId()));
+        }
+
         [HttpPost("payment")]
         public async Task<IActionResult> Payment(TransactionViewModel transaction)
         {
-            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
-            return CustomResponse(await _currentAccountService.Pay(currentAccount, transaction.Amount));
+            try
+            {
+                var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
+                return CustomResponse(await _currentAccountService.Pay(currentAccount, transaction.Amount));
+            }
+            catch (DomainException ex)
+            {
+                AddError(ex.Message);
+                return CustomResponse();
+            }
         }
 
         [HttpPost("deposit")]
@@ -45,8 +60,17 @@ namespace ContaFacil.CurrentAccounts.API.Controllers
         [HttpPost("withdrawal")]
         public async Task<IActionResult> Withdrawal(TransactionViewModel transaction)
         {
-            var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
-            return CustomResponse(await _currentAccountService.ToWithdraw(currentAccount, transaction.Amount));
+            try
+            {
+                var currentAccount = await _currentAccountService.GetByCustomerId(_user.GetUserId());
+                return CustomResponse(await _currentAccountService.ToWithdraw(currentAccount, transaction.Amount));
+            }
+            catch (DomainException ex)
+            {
+                AddError(ex.Message);
+                return CustomResponse();
+            }
+
         }
 
         [HttpGet("transaction_list")]

@@ -26,7 +26,7 @@ const Routes = () => {
         <Route path="/signup">
           <SignUp />
         </Route>
-        <PrivateRoute signed={signed} path="/">
+        <PrivateRoute path="/">
           <Home />
         </PrivateRoute>
       </Switch>
@@ -39,7 +39,7 @@ function PrivateRoute({ children, signed, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        signed ? (
+        sessionStorage.userToken ? (
           children
         ) : (
             <Redirect

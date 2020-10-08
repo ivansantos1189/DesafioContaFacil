@@ -11,7 +11,7 @@ export const apiApp = axios.create({
 apiApp.interceptors.request.use(
   async (requestConfig) => {
     const userToken = JSON.parse(sessionStorage.userToken);
-    requestConfig.headers.common.Authorization = `Bearer ${userToken.acessToken}`;
+    requestConfig.headers.common.Authorization = `Bearer ${userToken.accessToken}`;
     return requestConfig;
   },
   (response) => Promise.reject(response),

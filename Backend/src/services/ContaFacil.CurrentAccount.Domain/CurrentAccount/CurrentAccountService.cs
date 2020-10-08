@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContaFacil.Core.DomainObjects;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -47,6 +48,9 @@ namespace ContaFacil.CurrentAccount.Domain
 
         public async Task<Transaction> Pay(CurrentAccount currentAccount, decimal amount)
         {
+            if (amount > currentAccount.CurrentBalance)
+                throw new DomainException("Saldo insuficiente!");
+
             var transaction = new Transaction(currentAccount.Id, TransactionType.Payment, amount);
 
             _currentAccountRepository.CreateTransaction(transaction);
@@ -77,6 +81,9 @@ namespace ContaFacil.CurrentAccount.Domain
 
         public async Task<Transaction> ToWithdraw(CurrentAccount currentAccount, decimal amount)
         {
+            if (amount > currentAccount.CurrentBalance)
+                throw new DomainException("Saldo insuficiente!");
+
             var transaction = new Transaction(currentAccount.Id, TransactionType.Withdrawal, amount);
 
             _currentAccountRepository.CreateTransaction(transaction);
